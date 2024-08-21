@@ -18,5 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('page.home');
+});
 
 Route::get('/categories', [CategoryController::class, 'index']);
