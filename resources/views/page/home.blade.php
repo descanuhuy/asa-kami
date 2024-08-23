@@ -1,7 +1,9 @@
 @extends('layouts.guest')
 
 @section('content')
-<header class="py-5 bg-light border-bottom mb-4" style="background-image: url('image/bps_tuban.jpg'); background-size: cover; background-position: center; margin-top: 4.9em;">
+
+@include('partials.carousel')
+{{-- <header class="py-5 bg-light border-bottom mb-4" style="background-image: url('image/bps_tuban.jpg'); background-size: cover; background-position: center; margin-top: 4.9em;">
     <div class="container" style="height: 17em; margin-top: 8em;">
         <div class="text-center my-5">
             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1em; border-radius: 10px; display: inline-block;">
@@ -10,7 +12,7 @@
             </div>
         </div>
     </div>
-</header>
+</header> --}}
 
   <style>
     .news-link {
@@ -26,72 +28,31 @@
     .selengkapnya {
       text-decoration: underline;
     }
+
+    .carousel-control-next-icon , .carousel-control-prev-icon {
+      /* color: #007bff; */
+      background-color: #007bff;
+      border-radius: 8px;
+      padding: 16px
+    }
   </style>
 
-<div class="row g-4">
+<div class="row g-4 my-5">
   <!-- Cards Column -->
   <div class="col-md-8">
     <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" class="card-text news-link selengkapnya">Selengkapnya...</a>
+      @foreach ($mainPosts as $post)
+        <div class="col">
+          <div class="card">
+              <img src="{{ $post['thumbnail'] }}" alt="Thumbnail" style="height: 180px; margin-right: 10px;" class="card-img-top">
+              <div class="card-body">
+                  <h5 class="card-title">{{ $post['title'] }}</h5>
+                  <p class="card-text">{!! Str::limit($post['content'], 15) !!}</p>
+                  <a href="#" class="d-flex card-text news-link selengkapnya">Selengkapnya...</a>
+              </div>
           </div>
-        </div>
       </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" class="card-text news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="card-text news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="card-text news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="card-text news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" class="card-text news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
   </div>
 
@@ -100,14 +61,18 @@
   <!-- Berita Lainnya Card -->
   <div class="card mb-4" style="width: 100%; height: auto;">
     <div class="card-header">
-      <strong>Lainnya!</strong>
+      <strong>Berita Lainnya</strong>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><a href="#" class="news-link">News Title 1</a></li>
-      <li class="list-group-item"><a href="#" class="news-link">News Title 2</a></li>
-      <li class="list-group-item"><a href="#" class="news-link">News Title 3</a></li>
-      <li class="list-group-item"><a href="#" class="news-link">News Title 4</a></li>
-      <li class="list-group-item"><a href="#" class="news-link">News Title 5</a></li>
+      @if (count($otherPosts) === 0)
+        <p class="text-center text-danger fs-5">Tidak ada berita lainnya</p>
+
+      @else
+        @foreach ($otherPosts as $item)
+          <li class="list-group-item"><a href="#" class="news-link">{{ $item->title }}</a></li>
+        @endforeach
+      @endif
+    
     </ul>
   </div>
 

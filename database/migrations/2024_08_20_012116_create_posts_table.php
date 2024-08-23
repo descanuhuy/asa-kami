@@ -12,12 +12,14 @@ return new class extends Migration {
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('topic_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
             $table->boolean('is_published')->default(false);
-            $table->string('banner');
+            $table->text('link_materi');
+            // $table->string('banner');
             $table->timestamps();
         });
     }

@@ -23,6 +23,7 @@ use Illuminate\Support\Str;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Toggle;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PostResource extends Resource
@@ -40,12 +41,13 @@ class PostResource extends Resource
                         TextInput::make('title')->required()->live(onBlur: true)
                             ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
                         TextInput::make('slug')->required(),
-                        BelongsToSelect::make('category_id')
-                            ->relationship('category', 'name'),
+                        BelongsToSelect::make('topic_id')
+                            ->relationship('topic', 'name'),
                         // FileUpload::make('banner'),
                         SpatieMediaLibraryFileUpload::make('thumbnail')
                             ->collection('posts'),
                         RichEditor::make('content'),
+                        TextInput::make('link_materi'),
                         Toggle::make('is_published')
                     ]
                 )
@@ -55,15 +57,18 @@ class PostResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('title')->limit(50)->sortable(),
+                TextColumn::make('title')->limit(50)->sortable()->searchable(),
                 TextColumn::make('slug')->limit(50),
                 BooleanColumn::make('is_published'),
                 SpatieMediaLibraryImageColumn::make('thumbnail')->collection('posts'),
             ])
             ->filters([
                 //
+                Filter::make('is_published')
+                    ->query(fn(Builder $query): Builder => $query->where('is_published', true))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

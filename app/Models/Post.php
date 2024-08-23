@@ -11,16 +11,20 @@ class Post extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['category_id', 'title', 'slug', 'content', 'is_published', 'banner'];
+    protected $fillable = ['topic_id', 'title', 'slug', 'content', 'is_published', 'link_materi'];
 
     protected $casts = [
         'is_published' => 'boolean',
     ];
 
-    public function category()
+    public function topic()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Topic::class);
     }
+    // public function category()
+    // {
+    //     return $this->belongsTo(Category::class);
+    // }
 
     public function tags()
     {

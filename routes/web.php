@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('page.home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/topic', function () {
     return view('page.topic');
@@ -34,8 +34,14 @@ Route::get('/about', function () {
     return view('page.about');
 });
 
+Route::get('/tes', function () {
+    return view('page.tes');
+});
+
 Route::get('/news', function () {
     return view('page.news');
 });
+
+Route::get('/posts/latest', [PostController::class, 'getLatestPost']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
