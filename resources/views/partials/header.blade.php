@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #29465b">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #1E2A5E">
     <div class="container">
         <!-- <a class="navbar-brand" href="#!"><strong>ASA KITA</strong></a> -->
         <a class="navbar-brand" href="#!">
@@ -35,3 +35,15 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .nav-link {
+        color: lightgray;
+        text-decoration: none;
+    }
+
+    .nav-link:hover {
+        color: white;
+        text-decoration: none;
+    }
+</style>
