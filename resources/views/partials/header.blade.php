@@ -60,3 +60,15 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .nav-link {
+        color: lightgray;
+        text-decoration: none;
+    }
+
+    .nav-link:hover {
+        color: white;
+        text-decoration: none;
+    }
+</style>

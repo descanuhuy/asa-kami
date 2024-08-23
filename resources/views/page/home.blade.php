@@ -25,8 +25,40 @@
         text-decoration: none;
     }
 
+    .card {
+        height: 350px; /* Fixed height for each card */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Aligns text at the top */
+        height: 100%; /* Ensure the card-body takes full height */
+        overflow: hidden; /* Prevent overflow of content */
+        padding-bottom: 10px; /* Add some padding at the bottom */
+    }
+
+    .card-title {
+        margin-bottom: 10px; /* Space between title and text */
+    }
+
+    .card-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Limit text to 3 lines */
+        -webkit-box-orient: vertical;
+        line-height: 1.5; /* Adjust line height for readability */
+        margin-bottom: 10px; /* Space between text and link */
+        flex-grow: 1; /* Allow the text area to grow and occupy available space */
+    }
+
     .selengkapnya {
-      text-decoration: underline;
+        margin-top: auto; /* Push link to the bottom of the card body */
+        align-self: flex-start; /* Align link to the left */
+        text-decoration: underline;
     }
 
     .carousel-control-next-icon , .carousel-control-prev-icon {
@@ -78,7 +110,7 @@
 
   <!-- Statistik Pengunjung Card -->
   <div class="card" style="width: 100%; height: auto;">
-    <div class="card-header">
+    <div class="card-header" style="background-color: #55679C; color: white">
        <strong>Statistik Pengunjung</strong>
     </div>
     <div class="card-body">

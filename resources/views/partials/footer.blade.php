@@ -1,5 +1,5 @@
     <!-- Footer -->
-    <footer class="py-5" style="background-color: #29465b;">
+    <footer class="py-5" style="background-color: #1E2A5E;">
         <div class="container">
             <div class="row">
 

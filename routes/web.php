@@ -26,8 +26,12 @@ Route::get('/topic', function () {
     return view('page.topic');
 });
 
+// Route::get('/archive', function () {
+//     return view('page.archive');
+// });
+
 Route::get('/archive', function () {
-    return view('page.archive');
+    return view('page.archive0');
 });
 
 Route::get('/about', function () {
