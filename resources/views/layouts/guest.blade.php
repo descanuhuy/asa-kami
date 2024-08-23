@@ -10,7 +10,7 @@
     
     @include('partials.header')
 
-    <main class="container my-5">
+    <main class="container mb-5" style="margin-top:6.5em">
       @yield('content')
     </main>
 

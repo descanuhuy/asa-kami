@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-<header class="py-5 bg-light border-bottom mb-4" style="background-image: url('image/bps_tuban.jpg'); background-size: cover; background-position: center; margin-top: 4.9em;">
+<header class="py-5 bg-light border-bottom mb-4" style="background-image: url('image/bps_tuban.jpg'); background-size: cover; background-position: center; margin-top: -1.5em;">
     <div class="container" style="height: 17em; margin-top: 8em;">
         <div class="text-center my-5">
             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1em; border-radius: 10px; display: inline-block;">
