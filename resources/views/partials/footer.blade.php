@@ -36,7 +36,7 @@
                     <div class="d-flex align-items-center justify-content-center">
 
                         <ul class="list-unstyled">
-                            <li>
+                            <li class="mb-1">
                                 <a href="https://twitter.com/bpstuban" class="text-white no-underline d-flex align-items-center" target="_blank" rel="noopener noreferrer">
                                     <!-- Ikon Twitter (X) -->
                                     <i class="bi bi-twitter-x"></i>
@@ -44,7 +44,7 @@
                                     <span class="ms-2" style="font-size: 16px;">@BpsTuban</span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="mb-1">
                                 <a href="https://www.youtube.com/channel/UCR1a6zvpX8dYGc6COKbjJNg" class="text-white no-underline d-flex align-items-center" target="_blank" rel="noopener noreferrer">
                                     <!-- Ikon YouTube -->
                                     <i class="bi bi-youtube"></i>
@@ -52,7 +52,7 @@
                                     <span class="ms-2" style="font-size: 16px;">BPS Kabupaten Tuban</span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="mb-1">
                                 <a href="https://www.instagram.com/bpstuban" class="text-white no-underline d-flex align-items-center" target="_blank" rel="noopener noreferrer">
                                     <!-- Ikon Instagram -->
                                     <i class="bi bi-instagram"></i>
@@ -60,7 +60,7 @@
                                     <span class="ms-2" style="font-size: 16px;">@bpstuban</span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="mb-1">
                                 <a href="https://www.facebook.com/bpstuban" class="text-white no-underline d-flex align-items-center" target="_blank" rel="noopener noreferrer">
                                     <!-- Ikon Facebook -->
                                     <i class="bi bi-facebook"></i>
@@ -74,19 +74,35 @@
                 </div>
 
                 <!-- Contact Info -->
-                <div class="col-md-4 text-center text-md-center">
-                    <h6 class="mb-3 text-white" style="font-size: 20px;">Kontak Kami</h6>
-                    <p class="text-white mb-2" style="text-align: left; margin-left: 80px;">
-                        Jalan Manunggal 8, Tuban<br>
-                        Telp/Fax : (0356) 321974
-                    </p>
-                    <div class="mt-3 d-flex" style="margin-left: 80px;">
-                        <a href="mailto:bps3523@bps.go.id" class="text-white no-underline d-flex align-items-center" target="_blank" rel="noopener noreferrer">
-                            <!-- Ikon Mail -->
-                            <i class="bi bi-envelope-fill"></i>
-                            <!-- Teks di sebelah ikon -->
-                            <span class="ms-2">bps3523@bps.go.id</span>
-                        </a>
+                <div class="col-md-4 text-md-center">
+                    <h6 class="mb-3 text-white text-center" style="font-size: 20px;">Kontak Kami</h6>
+
+                    <div class="d-flex flex-column align-items-center justify-content-center"> 
+                       
+                        <div class="mt-1 d-flex align-items-start">
+                            <a class="text-white" style="text-decoration: none;">
+                                <!-- Ikon Location -->
+                                <i class="bi bi-geo-alt"></i>
+                                <!-- Teks di sebelah ikon -->
+                                <span class="ms-2">Jalan Manunggal 8, Tuban</span>
+                            </a>
+                        </div>
+                        <div class="mt-1 d-flex align-items-start">
+                            <a class="text-white" style="text-decoration: none;">
+                                <!-- Ikon Telephone -->
+                                <i class="bi bi-telephone-fill"></i>
+                                <!-- Teks di sebelah ikon -->
+                                <span class="ms-2">Telp/Fax: (0356) 321974</span>
+                            </a>
+                        </div>
+                        <div class="mt-1 d-flex align-items-start">
+                            <a href="mailto:bps3523@bps.go.id" class="text-white no-underline d-flex" target="_blank" rel="noopener noreferrer">
+                                <!-- Ikon Mail -->
+                                <i class="bi bi-envelope-fill"></i>
+                                <!-- Teks di sebelah ikon -->
+                                <span class="ms-2">bps3523@bps.go.id</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
