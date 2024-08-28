@@ -69,68 +69,41 @@
 
 <div class="row g-4">
   <!-- Cards Column -->
+
+
   <div class="col-md-8">
     <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('image/bps_tuban.jpg') }}" alt="Logo" style="height: 180px; margin-right: 10px;" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
-          </div>
-        </div>
-      </div>
+      
+        @php
+        $hasPosts = false;
+        @endphp
+
+        @foreach ($formattedTopics as $topic)
+            @if (count($topic['posts']) > 0)
+                @php
+                    $hasPosts = true;
+                @endphp
+                @foreach ($topic['posts'] as $post)
+                    <div class="col">
+                        <div class="card">
+                            <img src="{{ $post['thumbnail'] }}" alt="{{ $post['title'] }}" style="height: 180px; margin-right: 10px;" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $post['title'] }}</h5>
+                                <p class="card-text">{!! $post['content'] !!}</p>
+                                <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        @endforeach
+
+        @if (!$hasPosts)
+            <div class="alert alert-danger" role="alert">
+                Belum ada berita
+            </div>
+        @endif
+
     </div>
   </div>
 
