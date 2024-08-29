@@ -53,19 +53,20 @@
     }
 </style>
 
-<div class="row g-4">
+<div class="row g-4 my-5">
   <!-- Cards Column (Left Side - 2/3) -->
   <div class="col-md-8">
         <div class="col">
             <div class="card">
-                <h5 class="card-title" style="padding: 15px 15px 0 15px; margin-bottom: 20px;">Judul Berita: Lorem Ipsum Dolor Sit Amet</h5>    
-                <img src="https://via.placeholder.com/600x180" alt="Dummy Image" style="height: 400px; padding: 0 15px;" class="card-img-top">
+                <h5 class="card-title" style="padding: 15px 15px 0 15px; margin-bottom: 20px;">{{ $post['title'] }}</h5>    
+                <img src="{{ $post['thumbnail'] }}" alt="Thumbnail" style="height: 400px; padding: 0 15px;" class="card-img-top">
+                    <!-- <img src="https://via.placeholder.com/600x180" alt="Dummy Image" style="height: 400px; padding: 0 15px;" class="card-img-top"> -->
                 <div class="card-body" style="text-align: justify;"> 
 
                     <!-- Metadata Row -->
                     <div class="metadata-row row">
-                        <div class="col-6 author">Penulis: John Doe</div>
-                        <div class="col-6 date">Tanggal Berita: 23 Agustus 2024</div>
+                        <div class="col-6 author">Penulis: Admin Bisa Tuntas</div>
+                        <div class="col-6 date">Tanggal Berita: {{  \Carbon\Carbon::parse($post['tanggal'])->locale('id')->translatedFormat('j F Y') }}</div>
                     </div>
 
                     <!-- Badges -->
@@ -76,9 +77,13 @@
                         <span class="badge rounded-pill" style="background-color: #7C93C3;">Warning</span>
                     </div>
 
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae lacus non odio varius aliquam. Sed euismod, tortor id ultricies consectetur, augue nisi dictum velit, et sodales metus libero nec est. Nulla facilisi. Mauris ac libero dapibus, condimentum ligula vel, tempor lorem. Sed lacinia velit in turpis malesuada, et posuere elit dictum. Nam suscipit volutpat nisi, vel vehicula libero ornare vel. Curabitur nec tortor eget purus malesuada pharetra non sit amet justo.</p>
+                    {!! 
+                        $post['content']
+                    !!}
+
+                    <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae lacus non odio varius aliquam. Sed euismod, tortor id ultricies consectetur, augue nisi dictum velit, et sodales metus libero nec est. Nulla facilisi. Mauris ac libero dapibus, condimentum ligula vel, tempor lorem. Sed lacinia velit in turpis malesuada, et posuere elit dictum. Nam suscipit volutpat nisi, vel vehicula libero ornare vel. Curabitur nec tortor eget purus malesuada pharetra non sit amet justo.</p>
                     <p class="card-text">Sed ornare vehicula nulla, vitae hendrerit velit dapibus in. Quisque ultricies sapien ut augue fermentum, in feugiat libero tristique. Aenean tincidunt ex eu dui tincidunt, non pretium tortor tincidunt. Vestibulum at eros massa. Duis bibendum, magna nec lacinia facilisis, odio odio vulputate erat, ac condimentum orci enim a nulla. Donec scelerisque augue justo, non consectetur erat bibendum eget. Integer pulvinar sollicitudin dui, a placerat ligula hendrerit vel. Aenean dictum libero at felis egestas, non pharetra purus vehicula.</p>
-                    <p class="card-text">Integer ut nunc vestibulum, luctus nisi vel, ultricies arcu. Vestibulum venenatis, nulla ut luctus feugiat, est lectus aliquet leo, id fringilla libero magna a sapien. Vestibulum nec augue quis mi venenatis fermentum. Aliquam erat volutpat. Ut nec ex sit amet risus tincidunt scelerisque at sit amet magna. Nullam euismod, felis ut suscipit sollicitudin, mi elit dapibus eros, vel hendrerit libero mi vel orci. Morbi sed vestibulum justo, vel suscipit sapien.</p>
+                    <p class="card-text">Integer ut nunc vestibulum, luctus nisi vel, ultricies arcu. Vestibulum venenatis, nulla ut luctus feugiat, est lectus aliquet leo, id fringilla libero magna a sapien. Vestibulum nec augue quis mi venenatis fermentum. Aliquam erat volutpat. Ut nec ex sit amet risus tincidunt scelerisque at sit amet magna. Nullam euismod, felis ut suscipit sollicitudin, mi elit dapibus eros, vel hendrerit libero mi vel orci. Morbi sed vestibulum justo, vel suscipit sapien.</p> -->
                 </div>
             </div>
         </div>

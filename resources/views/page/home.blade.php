@@ -80,7 +80,7 @@
               <div class="card-body">
                   <h5 class="card-title">{{ $post['title'] }}</h5>
                   <p class="card-text">{!! Str::limit($post['content'], 15) !!}</p>
-                  <a href="#" class="d-flex card-text news-link selengkapnya">Selengkapnya...</a>
+                  <a href="{{ route('news') }}" class="d-flex card-text news-link selengkapnya">Selengkapnya...</a>
               </div>
           </div>
       </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,7 @@ Route::get('/topic/{name}', [TopicController::class, 'topic']);
 // Route::view('/archive', 'page.archive0');
 // Route::view('/about', 'page.about');
 Route::view('/tes', 'page.tes');
-Route::view('/news', 'page.news');
+Route::get('/news/{id}', [NewsController::class, 'detail'])->name('news');
 
 // Route::get('/', [HomeController::class, 'index']);
 
