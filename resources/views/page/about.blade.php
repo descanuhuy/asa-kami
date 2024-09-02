@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    <div class="container" style="padding-top: 100px">
+    <div class="container bg-light rounded-custom p-5" style="margin: 100px 0px;">
         <div class="row">
             <div class="col-md-3">
                 <h2 style="font-size: 28px;" class="mb-3">Tentang ASA KITA</h2>

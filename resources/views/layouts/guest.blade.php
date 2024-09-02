@@ -4,19 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bisa Tuntas</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.bootstrap5.min.css">
+
+     <link rel="icon" type="image/x-icon" href="{{ asset('image/app_logo.png') }}">
+
     </style>
   </head>
   <body>
     
     @include('partials.header')
 
-    <main class="container position-relative mb-5 min-vh-100">
+    <main class="container position-relative min-vh-100">
       <div class="position-absolute top-50 start-50 translate-middle loader">
         <div class="d-flex align-items-center justify-content-center">
 

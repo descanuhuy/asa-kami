@@ -63,89 +63,90 @@
 <nav aria-label="breadcrumb" style="margin-top: 4.5em;">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#" class="topic">Topik</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Kelembagaan</li>
+<li class="breadcrumb-item active" aria-current="page">{{ $topicDetails['name'] }}</li>
   </ol>
 </nav>
 
-<div class="row g-4">
-  <!-- Cards Column -->
+<div class="container">
 
+    <div class="row">
+      <!-- Cards Column -->
 
-  <div class="col-md-8">
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      
-        @php
-        $hasPosts = false;
-        @endphp
+        <!-- Sidebar Column -->
+         <div class="col-sm-12 col-md-4">
+            <!-- Berita Lainnya Card -->
+            <div class="card mb-4" style="width: 100%; height: auto;">
+                <div class="card-header" style="background-color: #55679C; color: white">
+                    <strong> Berita Lainnya</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach ($otherPosts as $post)
+                        <li class="list-group-item">
+                            <a href="{{ route('news', ['id' => $post['id']]) }}" class="news-link">{{ $post['title'] }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
-        @foreach ($formattedTopics as $topic)
-            @if (count($topic['posts']) > 0)
+            <!-- Statistik Pengunjung Card -->
+            <div class="card" style="width: 100%; height: auto;">
+                <div class="card-header" style="background-color: #55679C; color: white">
+                    <strong>Statistik Pengunjung</strong>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Total Pengunjung: 1200</p>
+                    <p class="card-text">Pengunjung Hari Ini: 150</p>
+                    <p class="card-text">Pengunjung Bulan Ini: 4500</p>
+                </div>
+            </div>
+        </div>
+
+      <div class="col-sm-12 col-md-8">
+            <div class="row row-cols-1 row-cols-md-2 bg-light px-4 py-5 rounded-custom">
+
                 @php
-                    $hasPosts = true;
+                $hasMainPosts = false;
+                $hasOtherPosts = false;
                 @endphp
-                @foreach ($topic['posts'] as $post)
-                    <div class="col">
-                        <div class="card">
-                            <img src="{{ $post['thumbnail'] }}" alt="{{ $post['title'] }}" style="height: 180px; margin-right: 10px;" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $post['title'] }}</h5>
-                                <p class="card-text">{!! $post['content'] !!}</p>
-                                <a href="#" class="news-link selengkapnya">Selengkapnya...</a>
+
+                <!-- Display Main Posts -->
+                @if (count($formattedTopics) > 0)
+                    @php
+                        $hasMainPosts = true;
+                    @endphp
+                    @foreach ($formattedTopics as $post)
+                        <div class="col">
+                            <div class="card mb-4" style="height:20em">
+                                <img src="{{ $post['thumbnail'] }}" alt="{{ $post['title'] }}" style="height: 180px; margin-right: 10px;" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{!! Str::limit($post['title'], 70) !!}</h5>
+                                    <!-- <p class="card-text">{!! Str::limit($post['content'], 10) !!}</p> -->
+                                    <a href="{{ route('news', ['id' => $post['id']]) }}" class="news-link selengkapnya">Selengkapnya...</a>
+                                </div>
                             </div>
                         </div>
+                    @endforeach
+                @endif
+
+               
+
+                <!-- Display Alert if No Posts -->
+                @if (!$hasMainPosts && !$hasOtherPosts)
+                    <div class="alert alert-danger" role="alert">
+                        Belum ada berita
                     </div>
-                @endforeach
-            @endif
-        @endforeach
+                @endif
 
-        @if (!$hasPosts)
-            <div class="alert alert-danger" role="alert">
-                Belum ada berita
             </div>
-        @endif
+        </div>
+
+      
+
 
     </div>
-  </div>
-
-  <!-- Sidebar Column -->
-  <div class="col-md-4">
-    <!-- Berita Lainnya Card -->
-    <div class="card mb-4" style="width: 100%; height: auto;">
-      <div class="card-header" style="background-color: #55679C; color: white">
-        <strong> Berita Lainnya!</strong>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><a href="#" class="news-link">News Title 1</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 2</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 3</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 4</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 5</a></li>
-      </ul>
-    </div>
-
-    <!-- Statistik Pengunjung Card -->
-    <div class="card" style="width: 100%; height: auto;">
-      <div class="card-header" style="background-color: #55679C; color: white">
-        <strong>Statistik Pengunjung</strong>
-      </div>
-      <div class="card-body">
-        <p class="card-text">Total Pengunjung: 1200</p>
-        <p class="card-text">Pengunjung Hari Ini: 150</p>
-        <p class="card-text">Pengunjung Bulan Ini: 4500</p>
-      </div>
-    </div>
-  </div>
+        
 </div>
 
-<!-- Pagination at the bottom -->
-<nav aria-label="Page navigation example" style="margin-top: 2em;">
-  <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link news-link" href="#">Sebelumnya</a></li>
-    <li class="page-item"><a class="page-link news-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link news-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link news-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link news-link" href="#">Selanjutnya</a></li>
-  </ul>
-</nav>
+
 
 @endsection

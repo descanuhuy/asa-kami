@@ -14,34 +14,70 @@ class TopicController extends Controller
 
     public function topic($slug)
     {
-        $topics = Topic::where('slug', $slug)->limit(6)->with([
+        $allPosts = Topic::where('slug', $slug)->with([
             'posts' => function ($query) {
-
-                $query->with('media');
+                $query->with('media')->where('is_published', 1);
             }
         ])->get();
 
-        $formattedTopics = $topics->map(function ($category) {
+        $topics = $allPosts->first()->posts->take(4);
+
+        $otherPosts = $allPosts->first()->posts->skip(4)->take(6);
+
+        // $topics = Topic::where('slug', $slug)->limit(6)->with([
+        //     'posts' => function ($query) {
+        //         $query->with('media')->where('is_published', 1);
+        //     }
+        // ])->get();
+
+        //  $otherPosts = Topic::where('slug', $slug)->limit(4)->with([
+        //     'posts' => function ($query) {
+        //         $query->with('media')->where('is_published', 1);
+        //     }
+        // ])->get();
+
+        // $formattedTopics = $topics->map(function ($topic) {
+        //     return [
+        //         'id' => $topic->id,
+        //         'name' => $topic->name,
+        //         'slug' => $topic->slug,
+        //         'posts' => $topic->posts->map(function ($post) {
+        //             return [
+        //                 'id' => $post->id,
+        //                 'title' => $post->title,
+        //                 'slug' => $post->slug,
+        //                 'content' => $post->content,
+        //                 'is_published' => $post->is_published,
+        //                 'thumbnail' => $post->getFirstMediaUrl('posts'),
+        //                 'topic_id' => $post->topic_id,
+        //             ];
+        //         }),
+        //     ];
+        // });
+
+         $formattedTopics = $topics->map(function ($post) {
             return [
-                'id' => $category->id,
-                'name' => $category->name,
-                'slug' => $category->slug,
-                'posts' => $category->posts->map(function ($post) {
-                    return [
-                        'id' => $post->id,
-                        'title' => $post->title,
-                        'slug' => $post->slug,
-                        'content' => $post->content,
-                        'is_published' => $post->is_published,
-                        'thumbnail' => $post->getFirstMediaUrl('posts'),
-                        'category_id' => $post->category_id,
-                    ];
-                }),
+                'id' => $post->id,
+                'title' => $post->title,
+                'slug' => $post->slug,
+                'content' => $post->content,
+                'is_published' => $post->is_published,
+                'thumbnail' => $post->getFirstMediaUrl('posts'),
+                'topic_id' => $post->topic_id,
             ];
         });
 
-        return view('page.topic', compact('formattedTopics'));
+        $topicDetails = [
+            'id' => $allPosts->first()->id,
+            'name' => $allPosts->first()->name,
+            'slug' => $allPosts->first()->slug,
+        ];
 
-        // return response($formattedTopics);
+        return view('page.topic', [
+            'formattedTopics' => $formattedTopics,
+            'otherPosts' => $otherPosts,
+            'topicDetails' => $topicDetails,
+        ]);
+
     }
 }

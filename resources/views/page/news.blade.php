@@ -94,14 +94,14 @@
     <!-- Berita Terkini Card -->
     <div class="card mb-4" style="width: 100%; height: auto;">
       <div class="card-header" style="background-color: #55679C; color: white">
-        <strong>Berita Terkini</strong>
+        <strong>Berita Lainnya</strong>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><a href="#" class="news-link">News Title 1</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 2</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 3</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 4</a></li>
-        <li class="list-group-item"><a href="#" class="news-link">News Title 5</a></li>
+        @foreach ($otherPosts as $post)
+            <li class="list-group-item">
+                <a href="{{ route('news', ['id' => $post['id']]) }}" class="news-link">{{ $post['title'] }}</a>
+            </li>
+        @endforeach
       </ul>
     </div>
   </div>

@@ -1,9 +1,10 @@
 @extends('layouts.guest')
 
 @section('content')
-<div class="container">
-    <div style="margin-top: 5em">
-        <table id="myTable" class="table table-striped">
+<div class="container rounded-custom bg-light p-5" style="margin: 100px 0px;">
+    <p class="fs-3 fw-bold">Arsip Materi</p>
+    <div>
+        <table id="myTable" class="table table-hover">
             <thead>
                 <tr>
                     <th>No.</th>

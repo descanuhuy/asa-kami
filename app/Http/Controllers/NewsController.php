@@ -9,6 +9,13 @@ class NewsController extends Controller
 {
     public function detail($id) {
         $post = Post::findOrFail($id);
+
+        $otherPosts = Post::where('id', '!=', $id)
+            ->where('is_published', true)
+            ->with('media')
+            ->select('id', 'title')
+            ->limit(5)
+            ->get();
             
         $post = [
             'id' => $post->id,
@@ -21,6 +28,11 @@ class NewsController extends Controller
             'topic_id' => $post->topic_id,
         ];
 
-        return view('page.news', compact('post'));
+        // return response($otherPosts);
+
+        return view('page.news', [
+            'post' => $post,
+            'otherPosts' => $otherPosts,
+        ]);
     }
 }
