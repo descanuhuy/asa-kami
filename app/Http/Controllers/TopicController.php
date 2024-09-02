@@ -24,46 +24,12 @@ class TopicController extends Controller
 
         $otherPosts = $allPosts->first()->posts->skip(4)->take(6);
 
-        // $topics = Topic::where('slug', $slug)->limit(6)->with([
-        //     'posts' => function ($query) {
-        //         $query->with('media')->where('is_published', 1);
-        //     }
-        // ])->get();
-
-        //  $otherPosts = Topic::where('slug', $slug)->limit(4)->with([
-        //     'posts' => function ($query) {
-        //         $query->with('media')->where('is_published', 1);
-        //     }
-        // ])->get();
-
-        // $formattedTopics = $topics->map(function ($topic) {
-        //     return [
-        //         'id' => $topic->id,
-        //         'name' => $topic->name,
-        //         'slug' => $topic->slug,
-        //         'posts' => $topic->posts->map(function ($post) {
-        //             return [
-        //                 'id' => $post->id,
-        //                 'title' => $post->title,
-        //                 'slug' => $post->slug,
-        //                 'content' => $post->content,
-        //                 'is_published' => $post->is_published,
-        //                 'thumbnail' => $post->getFirstMediaUrl('posts'),
-        //                 'topic_id' => $post->topic_id,
-        //             ];
-        //         }),
-        //     ];
-        // });
-
          $formattedTopics = $topics->map(function ($post) {
             return [
                 'id' => $post->id,
                 'title' => $post->title,
-                'slug' => $post->slug,
                 'content' => $post->content,
-                'is_published' => $post->is_published,
                 'thumbnail' => $post->getFirstMediaUrl('posts'),
-                'topic_id' => $post->topic_id,
             ];
         });
 

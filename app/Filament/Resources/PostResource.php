@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
+use App\Models\Tag;
+
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\Card;
@@ -25,6 +27,7 @@ use Filament\Forms\Components\Toggle;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Select;
 
 class PostResource extends Resource
 {
@@ -43,11 +46,14 @@ class PostResource extends Resource
                         TextInput::make('slug')->required(),
                         BelongsToSelect::make('topic_id')
                             ->relationship('topic', 'name'),
-                        // FileUpload::make('banner'),
                         SpatieMediaLibraryFileUpload::make('thumbnail')
                             ->collection('posts'),
                         RichEditor::make('content'),
                         TextInput::make('link_materi'),
+                          Select::make('tags')
+                        ->multiple()
+                        ->options(Tag::all()->pluck('name', 'id'))
+                        ->relationship('tags', 'name'),
                         Toggle::make('is_published')
                     ]
                 )

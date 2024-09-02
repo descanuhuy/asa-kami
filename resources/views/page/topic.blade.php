@@ -80,11 +80,21 @@
                     <strong> Berita Lainnya</strong>
                 </div>
                 <ul class="list-group list-group-flush">
+
+                    @if (count($otherPosts) > 0)
+
                     @foreach ($otherPosts as $post)
                         <li class="list-group-item">
                             <a href="{{ route('news', ['id' => $post['id']]) }}" class="news-link">{{ $post['title'] }}</a>
                         </li>
                     @endforeach
+
+                    @else 
+                     <div class="alert alert-danger" role="alert">
+                        Belum ada berita
+                    </div>
+                    @endif
+
                 </ul>
             </div>
 
@@ -128,9 +138,7 @@
                     @endforeach
                 @endif
 
-               
-
-                <!-- Display Alert if No Posts -->
+            
                 @if (!$hasMainPosts && !$hasOtherPosts)
                     <div class="alert alert-danger" role="alert">
                         Belum ada berita

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
 
 class NewsController extends Controller
 {
@@ -16,7 +17,9 @@ class NewsController extends Controller
             ->select('id', 'title')
             ->limit(5)
             ->get();
-            
+        
+        $tags = $post->tags;
+
         $post = [
             'id' => $post->id,
             'title' => $post->title,
@@ -28,11 +31,13 @@ class NewsController extends Controller
             'topic_id' => $post->topic_id,
         ];
 
+
         // return response($otherPosts);
 
         return view('page.news', [
             'post' => $post,
             'otherPosts' => $otherPosts,
+            'tags' => $tags
         ]);
     }
 }

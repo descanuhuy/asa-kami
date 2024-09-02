@@ -15,16 +15,13 @@ class Post extends Model implements HasMedia
 
     protected $casts = [
         'is_published' => 'boolean',
+          'technologies' => 'array',
     ];
 
     public function topic()
     {
         return $this->belongsTo(Topic::class);
     }
-    // public function category()
-    // {
-    //     return $this->belongsTo(Category::class);
-    // }
 
     public function tags()
     {

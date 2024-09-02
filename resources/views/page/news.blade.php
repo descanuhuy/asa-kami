@@ -58,7 +58,7 @@
   <div class="col-md-8">
         <div class="col">
             <div class="card">
-                <h5 class="card-title" style="padding: 15px 15px 0 15px; margin-bottom: 20px;">{{ $post['title'] }}</h5>    
+                <h5 class="card-title text-center" style="padding: 15px 15px 0 15px; margin-bottom: 20px;">{{ $post['title'] }}</h5>    
                 <img src="{{ $post['thumbnail'] }}" alt="Thumbnail" style="height: 400px; padding: 0 15px;" class="card-img-top">
                     <!-- <img src="https://via.placeholder.com/600x180" alt="Dummy Image" style="height: 400px; padding: 0 15px;" class="card-img-top"> -->
                 <div class="card-body" style="text-align: justify;"> 
@@ -71,12 +71,10 @@
 
                     <!-- Badges -->
                     <div class="badges">
-                        <span class="badge rounded-pill" style="background-color: #7C93C3;">Primary</span>
-                        <span class="badge rounded-pill" style="background-color: #7C93C3;">Success</span>
-                        <span class="badge rounded-pill" style="background-color: #7C93C3;">Danger</span>
-                        <span class="badge rounded-pill" style="background-color: #7C93C3;">Warning</span>
+                        @foreach ($tags as $tag)
+                            <span class="badge rounded-pill" style="background-color: #7C93C3;">#{{ $tag->name }}</span>
+                        @endforeach
                     </div>
-
                     {!! 
                         $post['content']
                     !!}
@@ -97,11 +95,19 @@
         <strong>Berita Lainnya</strong>
       </div>
       <ul class="list-group list-group-flush">
-        @foreach ($otherPosts as $post)
-            <li class="list-group-item">
-                <a href="{{ route('news', ['id' => $post['id']]) }}" class="news-link">{{ $post['title'] }}</a>
-            </li>
-        @endforeach
+            @if (count($otherPosts) > 0)
+
+            @foreach ($otherPosts as $post)
+                <li class="list-group-item">
+                    <a href="{{ route('news', ['id' => $post['id']]) }}" class="news-link">{{ $post['title'] }}</a>
+                </li>
+            @endforeach
+
+            @else 
+             <div class="alert alert-danger" role="alert">
+                Belum ada berita
+            </div>
+            @endif
       </ul>
     </div>
   </div>
