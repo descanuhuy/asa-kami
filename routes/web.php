@@ -27,16 +27,18 @@ use Illuminate\Support\Facades\Route;
 /*
     Route Guest / User
 */
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/about', [AboutController::class, 'index']);
-Route::get('/archive', [ArsipController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/archive', [ArsipController::class, 'index'])->name('archive');
+Route::get('/topic/{name}', [TopicController::class, 'topic'])->name('topic');
+Route::view('/tes', 'page.tes');
+Route::get('/news/{id}', [NewsController::class, 'detail'])->name('news');
 // Route::get('/topic', [TopicController::class, 'index']);
-Route::get('/topic/{name}', [TopicController::class, 'topic']);
+
 // Route::view('/topic', 'page.topic');
 // Route::view('/archive', 'page.archive0');
 // Route::view('/about', 'page.about');
-Route::view('/tes', 'page.tes');
-Route::get('/news/{id}', [NewsController::class, 'detail'])->name('news');
+
 
 // Route::get('/', [HomeController::class, 'index']);
 

@@ -10,20 +10,41 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="kategoriDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if ( Route::currentRouteName() == 'home')
+                    <li class="nav-item "><a class="nav-link active" href="/">Beranda</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+                    @endif
+                     <li class="nav-item dropdown">
+                         @if (Route::currentRouteName() == 'topic')
+                        <a class="nav-link active dropdown-toggle" id="kategoriDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Topik
                         </a>
+                           @else
+                             <a class="nav-link dropdown-toggle" id="kategoriDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Topik
+                        </a>
+                        @endif
                         <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
                             @foreach($topics as $topic)
-                                <li><a class="dropdown-item" href="/topic/{{ $topic->slug }}">{{ $topic->name }}</a></li>
+                               
+                                    <li><a class="dropdown-item" href="/topic/{{ $topic->slug }}">{{ $topic->name }}</a></li>
+
                             @endforeach
                         </ul>
                         
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/archive">Arsip</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/about">Tentang Kami</a></li>
+                    @if ( Route::currentRouteName() == 'archive')
+                    <li class="nav-item "><a class="nav-link active" href="{{ route('archive') }}">Arsip</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('archive') }}">Arsip</a></li>
+                    @endif
+                    @if ( Route::currentRouteName() == 'about')
+                    <li class="nav-item "><a class="nav-link active" href="{{ route('about') }}">Tentang Kami</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Tentang Kami</a></li>
+                    @endif
+                   
                 </ul>
             </div>
         </div>

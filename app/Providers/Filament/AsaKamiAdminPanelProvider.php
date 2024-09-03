@@ -24,8 +24,8 @@ class AsaKamiAdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('asa-kami-admin')
-            ->path('asa-kami-admin')
+            ->id('bisa-tuntas-admin')
+            ->path('bisa-tuntas-admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
